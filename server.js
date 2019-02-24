@@ -15,7 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // API and HTML routes
-// ERRORS - CAN'T FIGURE OUT WHY
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 

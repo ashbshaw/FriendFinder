@@ -18,9 +18,9 @@
             <div class="form-group">
                 <input id="name" type="text" class="form-control" placeholder="Name (Required)">
             </div>
-            <!--<div class="form-group">
+            <div class="form-group">
                 <input id="photo" type="text" class="form-control" placeholder="Link to Profile Photo (Required)">
-            </div>-->
+            </div>
             <div class="form-group">
                 <label for="question1">Your mind is always buzzing with unexplored ideas and plans.</label>
                 <select class="form-control" id="question1">
@@ -137,7 +137,7 @@
             </div>
         </form>
         <div class="submit">
-            <button type="button" class="btn btn-warning">Submit</button>
+            <button type="button" class="btn btn-warning" button id="submit">Submit</button>
             <br>
         </div>
 
@@ -150,11 +150,11 @@
         </footer>-->
 
 
-        <!-- Destination after survey completion -->
+        <!-- NEED TO SHOW SOMETHING CONFIRMING SURVEY COMPLETION -->
 
 
 
-        <!-- JQuery and JavaScropt -->
+        <!-- JQuery and JavaScript -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
@@ -163,5 +163,31 @@
 </html>
 
 <script type="text/javascript">
+
+    $("#submit").on("click", function (event) {
+        event.preventDefault();
+
+        // Need to validate - want to get the basics functioning first
+
+        var newFriend = {
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            scores: [
+                $("#question1").val(),
+                $("#question2").val(),
+                $("#question3").val(),
+                $("#question4").val(),
+                $("#question5").val(),
+                $("#question6").val(),
+                $("#question7").val(),
+                $("#question8").val(),
+                $("#question9").val(),
+                $("#question10").val()
+            ],
+        };
+
+        // GETTING RUSTY ON JAVASCRIPT... NEED TO TALK THROUGH WHAT HAPPENS NEXT.
+        // I WAS NOT FULLY COMFORTABLE WITH JAVASCRIPT BEFORE WE HAD TO MOVE ON... NEED MORE HOURS IN THE DAY.
+    });
 
 </script>
