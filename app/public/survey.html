@@ -5,7 +5,6 @@
     <title>Survey - FriendFinder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 
@@ -151,12 +150,30 @@
 
 
         <!-- NEED TO SHOW SOMETHING CONFIRMING SURVEY COMPLETION -->
-
+        <div class="modal fade" tabindex="-1" role="dialog" id="friend_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">My New Best Friend!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>My new best friend is <span id="friend_name"></span></p>
+                        <img id="friend_image" src="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
 
         <!-- JQuery and JavaScript -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 
@@ -186,8 +203,16 @@
             ],
         };
 
-        // GETTING RUSTY ON JAVASCRIPT... NEED TO TALK THROUGH WHAT HAPPENS NEXT.
-        // I WAS NOT FULLY COMFORTABLE WITH JAVASCRIPT BEFORE WE HAD TO MOVE ON... NEED MORE HOURS IN THE DAY.
+        $.post("/api/friends", newFriend,
+            function (data) {
+
+                console.log(data);
+
+                // put the name in the modal using .text
+                // put the image in the modal using attr
+                $('#friend_modal').modal('toggle');
+            });
     });
 
+   // nodemon server.js 
 </script>
