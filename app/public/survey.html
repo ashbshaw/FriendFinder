@@ -5,8 +5,7 @@
     <title>Survey - FriendFinder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
@@ -147,18 +146,12 @@
                         </select>
                     </div>
                 </form>
+                <button type="button" class="btn btn-warning" button id="submit">Submit</button>
             </div>
             <div class="col-md-2">
                 <img id="argyle" img src="../../assets/images/argyle.jpg" class="auth-image" alt="pattern">
             </div>
-
         </div>
-
-        <div class="submit">
-            <button type="button" class="btn btn-warning" button id="submit">Submit</button>
-            <br>
-        </div>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="footer">
@@ -172,19 +165,19 @@
 
         <!-- Confirms survey completion -->
         <!--https://getbootstrap.com/docs/3.3/javascript/#modals-->
-        <div class="modal fade" tabindex="-1" role="dialog" id="friend_modal">
+        <div class="modal fade" tabindex="-1" role="dialog" id="friend_modal" >
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color:rgb(86, 112, 121)">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">My New Best Friend!</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="background-color:rgb(86, 112, 121)">
                         <p>My new best friend is <span id="friend_name"></span></p>
                         <img id="friend_image" src="">
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="background-color:rgb(86, 112, 121)">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -206,12 +199,6 @@
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
-        // Validation - this did not work
-        // if ((name === '' || photo === '')) {
-        //     console.log("Please complete all fields.");
-        //     alert("Please complete all fields, or no best friend for you!");
-
-        // } else {
         var newFriend = {
             name: $("#name").val().trim(),
             photo: $("#photo").val().trim(),
@@ -227,23 +214,41 @@
                 $("#question9").val(),
                 $("#question10").val()
             ],
-            // }
         };
 
-        $.post("/api/friends", newFriend,
-            function (data) {
+        // Validation 
+        if (newFriend.name === '' || newFriend.photo === '' || newFriend.scores.indexOf("empty") > 0) {
+            console.log("Please complete all fields.");
+            alert("Please complete all fields, or no best friend for you!");
+        } else {
 
-                // console.log(data);
+            $.post("/api/friends", newFriend,
+                function (data) {
 
-                // Set the name and image of the best friend match
-                $("#friend_name").html(data.friendName);
-                var match = $("friend_name").text;
-                
-                $("#friend_image").attr("src", data.friendImage);
+                    console.log(data);
 
-                // Shows the modal to display information
-                $('#friend_modal').modal('toggle');
-            });
+                    // Set the name and image of the best friend match
+                    $("#friend_name").html(data.name);
+                    $("#friend_image").attr("src", data.photo);
+
+                    // Shows the modal to display information
+                    $('#friend_modal').modal('toggle');
+                });
+
+            $("#name").val("");
+            $("#photo").val("");
+            $("#question1").val("");
+            $("#question2").val("");
+            $("#question3").val("");
+            $("#question4").val("");
+            $("#question5").val("");
+            $("#question6").val("");
+            $("#question7").val("");
+            $("#question8").val("");
+            $("#question9").val("");
+            $("#question10").val("");
+
+        };
     });
 
 </script>
