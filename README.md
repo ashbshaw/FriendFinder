@@ -3,6 +3,12 @@
 ## **Overview**
 FriendFinder is a compatibility-based application. It asks the user 10 questions (1 = strongly disagree, 5 = strongly agree) and presents a best friend match based upon the user's answers.
 
+**Deploy App**
+
+Visit this site to deploy the app!
+
+https://evening-chamber-31741.herokuapp.com/
+
 ## **Technical Details**
 **Technologies Used**
 
