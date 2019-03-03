@@ -12,6 +12,7 @@ var PORT = 3000;
 // Middleware 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("app/public"));
 
 // API and HTML routes
 // Has to go below the Middleware

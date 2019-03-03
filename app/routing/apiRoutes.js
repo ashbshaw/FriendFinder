@@ -20,31 +20,44 @@ module.exports = function (app) {
 
   // API POST Requests
   // Below code handles when a user submits a form and thus submits data to the server.
-  // NEED TO TALK THROUGH POST ON A CONCEPTUAL LEVEL AND PRACTICE THE POST REQUEST
   // ---------------------------------------------------------------------------
   app.post("/api/friends", function (req, res) {
-    
-    console.log(req.body)
 
-    // grab user data from post
-    // outer loop through friends
-    // each loop grabs the scores
-    // inner loop through scores
+    //console.log(req.body)
 
-    // look for example with for var j
+    // Grab user data from post
+    var userInput = req.body;
+    var userResponse = userInput.scores;
 
-    // absolute value of difference between scores
+    // Calculate match
+    var friendName = "";
+    var friendImage = "";
+    var totalDiff = 1000;
 
-    // whoever has the smallest difference from the user is the best friend
-    // last... push the friend to the front
+    // Loop through friendData
+    for (var i = 0; i < friendData.length; i++) {
+      var diff = 0;
 
-    res.json({name: "Joe", photo: "photo"});
+      // Loop through scores
+      for (var j = 0; j < userResponse.length; j++) {
+        diff += Math.abs(friendData[i].scores[j] - userResponse[j]);
+      };
 
+      if (diff < totalDiff) {
+        totalDiff = diff;
+        friendName = friendData[i].name;
+        friendImage = friendData[i].photo;
+      };
+
+    };
+
+    // Adds new entry
+    friendData.push(userInput);
+
+    // Pushes information to front 
+    res.json({ name: "", photo: "" });
 
   });
-
-
-
 
 };
 

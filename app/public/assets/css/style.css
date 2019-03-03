@@ -1,0 +1,31 @@
+body {
+    color: white;
+    background-color: rgb(86, 112, 121);
+};
+
+.jumbotron{
+    color: white;
+    background-color: rgb(86, 112, 121);
+};
+
+#friends {
+    padding: 0px 0px 0px 100px;
+};
+
+#argyle {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bolder;
+}
+
+.footer {
+    color: rgb(223, 177, 25);
+    padding: 30px 0px 30px 0px;
+    font-size: 18px;
+}
+
+
+
